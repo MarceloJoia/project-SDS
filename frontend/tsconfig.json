@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    // minhas configurações
+    // "baseUrl": "./src", vai orientar TypeScript que os arquivos estão na pasta SRC
+    "baseUrl": "./src",
     "target": "es5",
     "lib": [
       "dom",
