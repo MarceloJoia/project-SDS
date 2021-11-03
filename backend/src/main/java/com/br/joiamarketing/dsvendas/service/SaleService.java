@@ -1,5 +1,7 @@
 package com.br.joiamarketing.dsvendas.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -7,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.br.joiamarketing.dsvendas.dto.SaleDTO;
+import com.br.joiamarketing.dsvendas.dto.SaleSuccessDTO;
+import com.br.joiamarketing.dsvendas.dto.SaleSumDTO;
 import com.br.joiamarketing.dsvendas.entities.Sale;
 import com.br.joiamarketing.dsvendas.repositories.SaleRepository;
 import com.br.joiamarketing.dsvendas.repositories.SellerRepository;
@@ -27,5 +31,15 @@ public class SaleService {
 		sellerRepository.findAll();
 		Page<Sale> result =  repository.findAll(pageable);
 		return result.map(x -> new SaleDTO(x));
+	}
+	
+	@Transactional(readOnly = true)
+	public List<SaleSumDTO> amountGrupedBySeller(){
+		return repository.amountGrupedBySeller();
+	}
+	
+	@Transactional(readOnly = true)
+	public List<SaleSuccessDTO> successGrupedBySeller(){
+		return repository.successGrupedBySeller();
 	}
 }
